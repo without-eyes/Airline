@@ -25,6 +25,21 @@ public class FlightService {
         return flightRepository.save(flight);
     }
 
+    public Flight updateFlight(Long id, Flight updates) {
+        return flightRepository.findById(id).map(existingFlight -> {
+            if (updates.getDestination() != null) {
+                existingFlight.setDestination(updates.getDestination());
+            }
+            if (updates.getDepartureTime() != null) {
+                existingFlight.setDepartureTime(updates.getDepartureTime());
+            }
+            if (updates.getDepartureTime() != null) {
+                existingFlight.setDepartureTime(updates.getDepartureTime());
+            }
+            return flightRepository.save(existingFlight);
+        }).orElse(null);
+    }
+
     public void deleteFlight(Long id) {
         flightRepository.deleteById(id);
     }

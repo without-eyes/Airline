@@ -30,10 +30,9 @@ public class AdminController {
         return flightService.saveFlight(flight);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Flight updateFlight(@PathVariable Long id, @RequestBody Flight flight) {
-        flight.setId(id);
-        return flightService.saveFlight(flight);
+        return flightService.updateFlight(id, flight);
     }
 
     @DeleteMapping("/{id}")
