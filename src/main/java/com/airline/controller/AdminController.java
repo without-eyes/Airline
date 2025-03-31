@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/flights")
 public class AdminController {
-    private final FlightService flightService;
+    private FlightService flightService;
 
     public AdminController(FlightService flightService) {
         this.flightService = flightService;

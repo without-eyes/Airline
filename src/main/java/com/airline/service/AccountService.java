@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.User;
 
 @Service
 public class AccountService implements UserDetailsService {
-    private final AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;

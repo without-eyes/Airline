@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class CrewMemberService {
-    private final CrewMemberRepository crewMemberRepository;
+    private CrewMemberRepository crewMemberRepository;
 
     public CrewMemberService(CrewMemberRepository crewMemberRepository) {
         this.crewMemberRepository = crewMemberRepository;

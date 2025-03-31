@@ -11,8 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/dispatcher/crew")
 public class DispatcherController {
-    private final CrewMemberService crewMemberService;
-    private final FlightService flightService;
+    private CrewMemberService crewMemberService;
+    private FlightService flightService;
 
     public DispatcherController(CrewMemberService crewMemberService, FlightService flightService) {
         this.crewMemberService = crewMemberService;

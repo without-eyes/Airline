@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 public class AccountController {
-    private final AccountRepository accountRepository;
-    private final PasswordEncoder passwordEncoder;
+    private AccountRepository accountRepository;
+    private PasswordEncoder passwordEncoder;
 
     public AccountController(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
