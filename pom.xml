@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com</groupId>
-    <artifactId>WorkoutTracker</artifactId>
+    <artifactId>Airline</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>WorkoutTracker</name>
-    <description>WorkoutTracker</description>
+    <name>Airline</name>
+    <description>Airline</description>
     <url/>
     <licenses>
         <license/>
@@ -61,11 +61,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
