@@ -2,6 +2,7 @@ package com.airline.controller;
 
 import com.airline.model.Flight;
 import com.airline.service.FlightService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,27 +17,43 @@ public class AdminController {
     }
 
     @GetMapping
-    public List<Flight> getAllFlights() {
-        return flightService.getAllFlights();
+    public ResponseEntity<List<Flight>> getAllFlights() {
+        List<Flight> flightList = flightService.getAllFlights();
+        if (flightList.isEmpty()) {
+            return ResponseEntity.status(204).body(null);
+        } else {
+            return ResponseEntity.status(200).body(flightList);
+        }
     }
 
     @GetMapping("/{id}")
-    public Flight getFlightById(@PathVariable Long id) {
-        return flightService.getFlightById(id);
+    public ResponseEntity<Flight> getFlightById(@PathVariable Long id) {
+        Flight foundFlight = flightService.getFlightById(id);
+        if (foundFlight != null) {
+            return ResponseEntity.status(200).body(foundFlight);
+        } else {
+            return ResponseEntity.status(204).body(null);
+        }
     }
 
     @PostMapping
-    public Flight createFlight(@RequestBody Flight flight) {
-        return flightService.saveFlight(flight);
+    public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) {
+        return ResponseEntity.status(201).body(flightService.saveFlight(flight));
     }
 
     @PatchMapping("/{id}")
-    public Flight updateFlight(@PathVariable Long id, @RequestBody Flight flight) {
-        return flightService.updateFlight(id, flight);
+    public ResponseEntity<Flight> updateFlight(@PathVariable Long id, @RequestBody Flight flight) {
+        Flight updatedFlight = flightService.updateFlight(id, flight);
+        if (updatedFlight != null) {
+            return ResponseEntity.status(200).body(updatedFlight);
+        } else {
+            return ResponseEntity.status(202).body(null);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFlight(@PathVariable Long id) {
+    public ResponseEntity<Flight> deleteFlight(@PathVariable Long id) {
         flightService.deleteFlight(id);
+        return ResponseEntity.status(204).body(null);
     }
 }
