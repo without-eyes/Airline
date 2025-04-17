@@ -17,12 +17,15 @@ public class AdminController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Flight>> getAllFlights() {
-        List<Flight> flightList = flightService.getAllFlights();
-        if (flightList.isEmpty()) {
+    public ResponseEntity<List<Flight>> getAllFlights(
+            @RequestParam(required = false) String destination,
+            @RequestParam(required = false) String departureTime) {
+
+        List<Flight> filteredFlights = flightService.searchFlights(destination, departureTime);
+        if (filteredFlights.isEmpty()) {
             return ResponseEntity.status(204).body(null);
         } else {
-            return ResponseEntity.status(200).body(flightList);
+            return ResponseEntity.ok(filteredFlights);
         }
     }
 
@@ -47,7 +50,7 @@ public class AdminController {
         if (updatedFlight != null) {
             return ResponseEntity.status(200).body(updatedFlight);
         } else {
-            return ResponseEntity.status(202).body(null);
+            return ResponseEntity.status(404).body(null);
         }
     }
 

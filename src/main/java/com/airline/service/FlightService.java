@@ -4,6 +4,7 @@ import com.airline.model.Flight;
 import com.airline.repository.FlightRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
@@ -13,8 +14,11 @@ public class FlightService {
         this.flightRepository = flightRepository;
     }
 
-    public List<Flight> getAllFlights() {
-        return flightRepository.findAll();
+    public List<Flight> searchFlights(String destination, String departureTime) {
+        return flightRepository.findAll().stream()
+                .filter(f -> destination == null || f.getDestination().equalsIgnoreCase(destination))
+                .filter(f -> departureTime == null || f.getDepartureTime().equalsIgnoreCase(departureTime))
+                .collect(Collectors.toList());
     }
 
     public Flight getFlightById(Long id) {
