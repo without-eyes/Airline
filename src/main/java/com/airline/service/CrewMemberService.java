@@ -5,6 +5,7 @@ import com.airline.repository.CrewMemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CrewMemberService {
@@ -14,8 +15,14 @@ public class CrewMemberService {
         this.crewMemberRepository = crewMemberRepository;
     }
 
-    public List<CrewMember> getCrewByFlight(Long flightId) {
-        return crewMemberRepository.findByFlightId(flightId);
+    public List<CrewMember> getCrewByFlightWithFilters(Long flightId, String name, String role) {
+        System.out.println("Received request for flightId: " + flightId + ", name: " + name + ", role: " + role);
+
+
+        return crewMemberRepository.findByFlightId(flightId).stream()
+                .filter(cm -> name == null || cm.getName().equalsIgnoreCase(name))
+                .filter(cm -> role == null || cm.getRole().equalsIgnoreCase(role))
+                .collect(Collectors.toList());
     }
 
     public CrewMember saveCrewMember(CrewMember crewMember) {

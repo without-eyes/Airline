@@ -21,12 +21,16 @@ public class DispatcherController {
     }
 
     @GetMapping("/{flightId}")
-    public ResponseEntity<List<CrewMember>> getCrewByFlight(@PathVariable Long flightId) {
-        List<CrewMember> crewMemberList = crewMemberService.getCrewByFlight(flightId);
+    public ResponseEntity<List<CrewMember>> getCrewByFlight(
+            @PathVariable Long flightId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String role) {
+
+        List<CrewMember> crewMemberList = crewMemberService.getCrewByFlightWithFilters(flightId, name, role);
         if (crewMemberList.isEmpty()) {
             return ResponseEntity.status(204).body(null);
         } else {
-            return ResponseEntity.status(200).body(crewMemberList);
+            return ResponseEntity.ok(crewMemberList);
         }
     }
 
