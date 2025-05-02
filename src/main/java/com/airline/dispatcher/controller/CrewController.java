@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dispatcher/crew")
-public class DispatcherController {
+public class CrewController {
     private CrewMemberService crewMemberService;
     private FlightService flightService;
 
-    public DispatcherController(CrewMemberService crewMemberService, FlightService flightService) {
+    public CrewController(CrewMemberService crewMemberService, FlightService flightService) {
         this.crewMemberService = crewMemberService;
         this.flightService = flightService;
     }

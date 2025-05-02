@@ -9,10 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/flights")
-public class AdminController {
+public class FlightController {
     private FlightService flightService;
 
-    public AdminController(FlightService flightService) {
+    public FlightController(FlightService flightService) {
         this.flightService = flightService;
     }
 
