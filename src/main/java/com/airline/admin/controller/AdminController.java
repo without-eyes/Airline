@@ -1,7 +1,7 @@
-package com.airline.controller;
+package com.airline.admin.controller;
 
-import com.airline.model.Flight;
-import com.airline.service.FlightService;
+import com.airline.admin.model.Flight;
+import com.airline.admin.service.FlightService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

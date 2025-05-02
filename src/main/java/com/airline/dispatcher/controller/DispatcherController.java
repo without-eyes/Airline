@@ -1,9 +1,9 @@
-package com.airline.controller;
+package com.airline.dispatcher.controller;
 
-import com.airline.model.CrewMember;
-import com.airline.model.Flight;
-import com.airline.service.CrewMemberService;
-import com.airline.service.FlightService;
+import com.airline.dispatcher.model.CrewMember;
+import com.airline.admin.model.Flight;
+import com.airline.dispatcher.service.CrewMemberService;
+import com.airline.admin.service.FlightService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

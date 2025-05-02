@@ -1,6 +1,6 @@
-package com.airline.repository;
+package com.airline.dispatcher.repository;
 
-import com.airline.model.CrewMember;
+import com.airline.dispatcher.model.CrewMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

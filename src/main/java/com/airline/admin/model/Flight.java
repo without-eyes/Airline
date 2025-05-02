@@ -1,5 +1,6 @@
-package com.airline.model;
+package com.airline.admin.model;
 
+import com.airline.dispatcher.model.CrewMember;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;

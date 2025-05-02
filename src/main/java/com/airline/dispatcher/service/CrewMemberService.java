@@ -1,7 +1,7 @@
-package com.airline.service;
+package com.airline.dispatcher.service;
 
-import com.airline.model.CrewMember;
-import com.airline.repository.CrewMemberRepository;
+import com.airline.dispatcher.model.CrewMember;
+import com.airline.dispatcher.repository.CrewMemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

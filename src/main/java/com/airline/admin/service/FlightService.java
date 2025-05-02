@@ -1,7 +1,7 @@
-package com.airline.service;
+package com.airline.admin.service;
 
-import com.airline.model.Flight;
-import com.airline.repository.FlightRepository;
+import com.airline.admin.model.Flight;
+import com.airline.admin.repository.FlightRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
