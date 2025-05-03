@@ -52,11 +52,12 @@ public class CrewController {
         return ResponseEntity.status(201).body(crewMemberService.saveCrewMember(crewMember));
     }
 
-    @PostMapping("/{flightId}")
+    @PatchMapping("/{flightId}")
     public ResponseEntity<Flight> addCrewMemberToFlight(@PathVariable Long flightId, @RequestBody Long crewMemberId) {
         Flight flight = flightService.getFlightById(flightId);
         CrewMember crewMember = crewMemberService.getCrewMemberById(crewMemberId);
         crewMember.setFlight(flight);
+        crewMemberService.saveCrewMember(crewMember);
         return ResponseEntity.ok(flight);
     }
 
