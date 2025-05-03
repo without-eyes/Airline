@@ -62,8 +62,16 @@ public class CrewController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CrewMember> removeCrewMember(@PathVariable Long id) {
+    public ResponseEntity<CrewMember> deleteCrewMember(@PathVariable Long id) {
         crewMemberService.deleteCrewMember(id);
         return ResponseEntity.status(204).body(null);
+    }
+
+    @PatchMapping("/{flightId}/{crewMemberId}")
+    public ResponseEntity<CrewMember> removeCrewMemberFromFlight(@PathVariable Long flightId, @PathVariable Long crewMemberId) {
+        CrewMember crewMember = crewMemberService.getCrewMemberById(crewMemberId);
+        crewMember.setFlight(null);
+        crewMemberService.saveCrewMember(crewMember);
+        return ResponseEntity.ok(crewMember);
     }
 }
