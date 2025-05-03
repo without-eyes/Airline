@@ -29,6 +29,10 @@ public class CrewMemberService {
                 .collect(Collectors.toList());
     }
 
+    public CrewMember getCrewMemberById(Long crewMemberId) {
+        return crewMemberRepository.findById(crewMemberId).orElse(null);
+    }
+
     public CrewMember saveCrewMember(CrewMember crewMember) {
         return crewMemberRepository.save(crewMember);
     }

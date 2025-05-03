@@ -13,14 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/dispatcher/crew")
 public class CrewController {
-    private final CrewMemberRepository crewMemberRepository;
     private CrewMemberService crewMemberService;
     private FlightService flightService;
 
     public CrewController(CrewMemberService crewMemberService, FlightService flightService, CrewMemberRepository crewMemberRepository) {
         this.crewMemberService = crewMemberService;
         this.flightService = flightService;
-        this.crewMemberRepository = crewMemberRepository;
     }
 
     @GetMapping
@@ -48,11 +46,18 @@ public class CrewController {
         }
     }
 
-    @PostMapping("/{flightId}")
-    public ResponseEntity<CrewMember> addCrewMember(@PathVariable Long flightId, @RequestBody CrewMember crewMember) {
-        Flight flight = flightService.getFlightById(flightId);
-        crewMember.setFlight(flight);
+    @PostMapping
+    public ResponseEntity<CrewMember> createCrewMember(@RequestBody CrewMember crewMember) {
+        crewMember.setFlight(null);
         return ResponseEntity.status(201).body(crewMemberService.saveCrewMember(crewMember));
+    }
+
+    @PostMapping("/{flightId}")
+    public ResponseEntity<Flight> addCrewMemberToFlight(@PathVariable Long flightId, @RequestBody Long crewMemberId) {
+        Flight flight = flightService.getFlightById(flightId);
+        CrewMember crewMember = crewMemberService.getCrewMemberById(crewMemberId);
+        crewMember.setFlight(flight);
+        return ResponseEntity.ok(flight);
     }
 
     @DeleteMapping("/{id}")
