@@ -1,5 +1,6 @@
 package com.airline.dispatcher.service;
 
+import com.airline.admin.model.Flight;
 import com.airline.dispatcher.model.CrewMember;
 import com.airline.dispatcher.repository.CrewMemberRepository;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,11 @@ public class CrewMemberService {
         this.crewMemberRepository = crewMemberRepository;
     }
 
-    public List<CrewMember> getAllCrewByFlightWithFilters(String name, String role) {
+    public List<CrewMember> getAllCrewByFlightWithFilters(String name, String role, boolean isAvailable) {
         return crewMemberRepository.findAll().stream()
                 .filter(cm -> name == null || cm.getName().equalsIgnoreCase(name))
                 .filter(cm -> role == null || cm.getRole().equalsIgnoreCase(role))
+                .filter(cm -> !isAvailable || cm.getFlight() == null)
                 .collect(Collectors.toList());
     }
 

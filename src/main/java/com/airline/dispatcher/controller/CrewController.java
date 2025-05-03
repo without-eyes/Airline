@@ -23,8 +23,9 @@ public class CrewController {
 
     @GetMapping
     public ResponseEntity<List<CrewMember>> getCrewMembers(@RequestParam(required = false) String name,
-                                                           @RequestParam(required = false) String role) {
-        List<CrewMember> crewMemberList = crewMemberService.getAllCrewByFlightWithFilters(name, role);
+                                                           @RequestParam(required = false) String role,
+                                                           @RequestParam(required = false) boolean isAvailable) {
+        List<CrewMember> crewMemberList = crewMemberService.getAllCrewByFlightWithFilters(name, role, isAvailable);
         if (crewMemberList.isEmpty()) {
             return ResponseEntity.status(204).body(null);
         } else {
